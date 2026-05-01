@@ -2,7 +2,7 @@
 
 Full documentation: https://runmag-2026.readthedocs.io/en/latest/index.html
 
-### [ A newer version of code for working with TAPR sourced magnetometers PSWS DASI2 project can be found at: https://github.com/wittend/mag-usb  ]
+##### A different variant for working with TAPR sourced magnetometers in the PSWS DASI2 project can be found at: https://github.com/wittend/mag-usb
 
 This is a program intended to assist in testing the PNI RM3100 geomagnetic sensor.
 

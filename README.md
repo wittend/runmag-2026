@@ -1,5 +1,67 @@
 # runmag-2026
 
+## For now this project remains a 'work in progress', especially the documentation.
+It represents an attempt to modernize and generalize the software used to test the TAPR sourced magnetometer support boards (MSBs) in the PSWS DASI2 project.  
+It is intended to be a more robust and flexible tool for testing these boards, and to be usable on a wider variety of single board computers (SBCs) running Linux.  
+It is also intended to be a more user-friendly tool for those who may not be as comfortable with command line utilities or programming.
+
+#### Current repository tree as of 2026-12-29:
+```
+├── artifacts
+│   ├── Back Side 2020-01-30.png
+│   ├── basic-rm3100_3d_2020-01-39-3d.jpg
+│   ├── Configuring the Raspberry PI 3 0r 4 for the Magnetometer Support Boards (MSBs).doc
+│   ├── Configuring the Raspberry PI 3 0r 4 for the Magnetometer Support Boards (MSBs).html
+│   ├── Configuring the Raspberry PI 3 0r 4 for the Magnetometer Support Boards (MSBs).odt
+│   ├── Configuring the Raspberry PI 3 0r 4 for the Magnetometer Support Boards (MSBs).pdf
+│   ├── From PNI FAQ.md
+│   ├── Magnetometer Support Board purpose.md
+│   ├── MSBx SBC Hookup-2.svg
+│   ├── Notes on setting up Raspberry 3 & 4.md
+│   ├── runMag-data architecture.dia
+│   ├── runMag-data architecture.png
+│   ├── schematic_10_2020-01-30.pdf
+│   ├── Setting up Linux for the Magnetometer Support Boards (MSBs).html
+│   ├── Setting up the Single Board Computers (SBCs) running Linux for testing the Magnetometer Support Boards (MSBs).html
+│   ├── Setting up the Single Board Computers (SBCs) running Linux for testing the Magnetometer Support Boards (MSBs)_html_c3fdc8c2d8996b2b.gif
+│   ├── Setting up the Single Board Computers (SBCs) running Linux for testing the Magnetometer Support Boards (MSBs)_html_fd576f00de235439.gif
+│   ├── Setting up the Single Board Computers (SBCs) running Linux for testing the Magnetometer Support Boards (MSBs).odt
+│   ├── Setting up the Single Board Computers (SBCs) running Linux for testing the Magnetometer Support Boards (MSBs).pdf
+│   ├── SMSB SBC Hookup.svg
+│   └── Top Side 2020-01-30.png
+├── CHANGES.txt
+├── docs
+│   ├── conf.py
+│   ├── development.rst
+│   ├── getting_started.rst
+│   ├── index.rst
+│   ├── requirements.txt
+│   └── usage.rst
+├── include
+│   ├── cmdmgr.h
+│   ├── device_defs.h
+│   ├── i2c.h
+│   ├── main.h
+│   ├── MCP9808.h
+│   └── runMag.h
+├── LICENSE
+├── logs
+│   └── README-do-not-delete.md
+├── Makefile
+├── metadata.json
+├── README.md
+├── run-nopipe.sh
+├── runrun.sh
+├── src
+│   ├── cmdmgr.c
+│   ├── i2c.c
+│   ├── main.c
+│   └── runMag.c
+└── tests
+    ├── test_cmdmgr.c
+    └── test_runMag.c
+
+```
 Full documentation: https://runmag-2026.readthedocs.io/en/latest/index.html
 
 ##### A different variant for working with TAPR sourced magnetometers in the PSWS DASI2 project can be found at: https://github.com/wittend/mag-usb
@@ -67,20 +129,20 @@ Logging will continue to the new file uninterrupted.
 
     dave@raspi-3: ~/projects/runmag-2026 $ ./runmag-26 -kPS kd0eag
 
-## Example on Odroid N2, output JSON, show totalized magnetic field.
+## Example on various RPi-like platform, output to JSONL, showing totalized magnetic field.
 
     dave@odroid:~/$ sudo ./runmag-26 -j -Z -b 2
 
-    { ts:"03 May 2020 23:56:55",  lt:"24.62", x:"14" , y:"-11" , z:"49", rx:"1109", ry:"-844", rz:"3707", Tm: "52" }
-    { ts:"03 May 2020 23:56:59",  lt:"24.62", x:"14" , y:"-11" , z:"49", rx:"1111", ry:"-865", rz:"3712", Tm: "52" }
-    { ts:"03 May 2020 23:57:03",  lt:"24.62", x:"14" , y:"-11" , z:"49", rx:"1105", ry:"-862", rz:"3706", Tm: "52" }
+    { ts:"03 May 2020 23:56:55",  lt:"24.62", x:"14" , y:"-11" , z:"49", Tm: "52" }
+    { ts:"03 May 2020 23:56:59",  lt:"24.62", x:"14" , y:"-11" , z:"49", Tm: "52" }
+    { ts:"03 May 2020 23:57:03",  lt:"24.62", x:"14" , y:"-11" , z:"49", Tm: "52" }
     ...
 
     Tm : (sqrt((x*x) + (y*y) + (z*z)))
 
 
-## Example output using -h or -? option:
-
+## Example output using -h or -? option: 
+```
     david@marmoset:~/Projects/git/runmag-2026$ ./runmag-26 -h
 
     ./runmag-26 Version = 0.1.3
@@ -117,7 +179,7 @@ Logging will continue to the new file uninterrupted.
        -V                     :  Display software version and exit.
        -Z                     :  Show total field.                     [ sqrt((x*x) + (y*y) + (z*z)) ]
        -h or -?               :  Display this help.
-
+```
 
 ## Example output using the -P option:
 
